@@ -1,0 +1,93 @@
+<html>
+  <head>
+    <link rel="manifest" href="/manifest.webmanifest">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript">
+       //if('serviceWorker' in navigator) {
+        console.log('trying to install')
+        navigator.serviceWorker.register('service-worker.js').then((res)=>{
+          console.log(res, "Service worker registered");
+        }).catch((e) => {
+          console.log(e); // "Ah, não!"
+      });
+      // };
+    </script>
+    <meta charset="utf-8">
+  </head>
+<body style='background:#e1f6fe'>
+<div id="Adicionar" hidden>
+  TESTE
+  <button style="position: absolute;left:0;bottom:0;width:100vw;height:8vh; border: hidden;font-size:26px; background:#4250b3;color: aliceblue;" type="button" name="button">Adicionar</button>
+</div>
+
+<!-- Tela INICIAL -->
+<div id="home" style="text-align:center;">
+  <img src="pngwing.com.png" alt="logo" style="width:20vw; margin-top:5vh">
+  <div >
+    <button style='width:80vw; height:8vh; margin-top:10vh;border: hidden;font-size:26px;background:#4250b3;color: aliceblue;border-radius: 25px;'>
+      Diario de alimentação
+    </button>
+  </div>
+
+  <div>
+    <button onclick='Pesquisa()' style='width:80vw; height:8vh; margin-top:5vh;border: hidden;font-size:26px;background:#4250b3;color: aliceblue;border-radius: 25px;'>
+      Pesquisar
+    </button>
+  </div>
+
+  <div>
+    <button onclick='Add()' style='width:80vw; height:8vh; margin-top:5vh;border: hidden;font-size:26px;background:#4250b3;color: aliceblue;border-radius: 25px;'>
+      Adicionar
+    </button>
+  </div>
+</div>
+
+<div id="lista">
+
+</div>
+
+<div id="pesquisa" hidden>
+  <label for="search">Pesquisar: </label>
+  <input id="search" type="search" style="color: aliceblue;  background:#e1f6fe;border-style: none none solid none;"  />
+  <button style="position: absolute;left:0;bottom:0;width:100vw;height:8vh; border: hidden;font-size:26px; background:#4250b3;color: aliceblue;" type="button" name="button">Pesquisar</button>
+
+</div>
+
+
+<script type="text/javascript">
+
+    let paginaInicial= document.getElementById("home");
+    paginaInicial.removeAttribute("hidden");
+    function Add(){
+      let paginaCadastro = document.getElementById("Adicionar");
+      paginaCadastro.removeAttribute("hidden");
+
+
+      paginaInicial.setAttribute("hidden", "true");
+
+    }
+
+    function Pesquisa(){
+      let paginaCadastro = document.getElementById("pesquisa");
+      paginaCadastro.removeAttribute("hidden");
+
+
+      paginaInicial.setAttribute("hidden", "true");
+
+    }
+
+
+  //pega as historico local
+  onload = () => {
+    const historicolocal = JSON.parse(localStorage.getItem('historico'));
+    if (historicolocal) historico = historicolocal;
+
+  }
+
+
+</script>
+</body>
+</html>
